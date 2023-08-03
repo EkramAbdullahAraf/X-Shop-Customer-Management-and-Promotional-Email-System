@@ -20,18 +20,20 @@ class CampaignController extends Controller
         return Campaign::all();
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $campaign = new Campaign;
-        $campaign->name = $request->name;
-        $campaign->content = $request->contents;
-        // Other fields as necessary
+        return view('campaigns.create');
 
-        $campaign->save();
 
-        return response()->json(['message' => 'Campaign created', 'campaign' => $campaign]);
     }
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'content' => 'required',
+        ]);
+        return response()->json(['message' => 'Campaign created', 'campaign' => $campaign]);
+        }
     public function update(Request $request, Campaign $campaign)
     {
         // Update campaign with request data
@@ -47,7 +49,7 @@ class CampaignController extends Controller
 
         return response()->json(['message' => 'Campaign deleted']);
     }
-    public function sendMail(Request $request)
+    public function send(Request $request)
     {
         $customers = Customer::all();
 

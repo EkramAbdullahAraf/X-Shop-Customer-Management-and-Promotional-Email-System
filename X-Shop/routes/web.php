@@ -24,3 +24,5 @@ Route::get('/', function () {
     return 'Welcome to the homepage!'; // Replace with your desired view or functionality
 })->middleware('auth');
 Route::get('/signup', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('signup');
+Route::get('campaigns/create', 'CampaignController@create');
+Route::post('campaigns', 'CampaignController@store');

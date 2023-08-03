@@ -37,6 +37,17 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
+                            <h2>Send Email</h2>
+                            <form method="POST" action="{{ route('campaign.send') }}">
+                                @csrf
+                                <!-- Add other fields as necessary -->
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea class="form-control" id="message" name="message" required></textarea>
+                                </div>
+                                <!-- Add other fields as necessary -->
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
