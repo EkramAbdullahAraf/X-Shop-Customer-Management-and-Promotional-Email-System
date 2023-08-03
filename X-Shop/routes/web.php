@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return 'Welcome to the homepage!'; // Replace with your desired view or functionality
+})->middleware('auth');
+Route::get('/signup', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('signup');
